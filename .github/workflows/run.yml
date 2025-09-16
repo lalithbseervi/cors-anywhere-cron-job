@@ -27,4 +27,4 @@ jobs:
 
       - name: Run Python script
         run: |
-          python submit_form.py
+          python main.py
