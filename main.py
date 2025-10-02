@@ -1,34 +1,31 @@
 import requests
-from bs4 import BeautifulSoup
+import json
+import os
+from urllib.parse import urlencode
 
-url = "https://cors-anywhere.herokuapp.com/corsdemo"
-session = requests.Session()
+username = 'PES1UG21CA000'
+password = 'whatever'
 
-response = session.get(url)
+base_url = 'https://cors-proxy.devpages.workers.dev/'
+target_url = 'https://pesu-auth-z18n.onrender.com/authenticate'
+url = f"{base_url}?url={requests.utils.quote(target_url, safe='')}"
 
-print(f"initial fetch status code: {response.status_code}")
-
-soup = BeautifulSoup(response.text, 'html.parser')
-
-hidden_input = soup.find('input', {'name': 'accessRequest'})
-
-if hidden_input is None:
-    print("Hidden input field not found")
-    exit()
-
-hidden_value = hidden_input.get('value')
-print(f"Hidden input value: {hidden_value}")
-
-form_data = {
-    'accessRequest': hidden_value,
+payload = {
+    'username': username,
+    'password': password,
+    'profile': True,
+    'fields': ['branch', 'semester', 'name']
 }
 
-post_url = url
-get_response = session.get(post_url, params=form_data, data=form_data)
+headers = {
+    'Content-Type': 'application/json'
+}
 
-if get_response.status_code == 200 or get_response.status_code == 302:
+response = requests.post(url, json=payload, headers=headers)
+
+if response.status_code == 200 or response.status_code == 302:
     print("Form submitted successfully")
 else:
     print("Form submission failed")
 
-print(get_response.text)
+print(response.text)
