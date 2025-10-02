@@ -1,10 +1,9 @@
-name: Run Python Script Every 90 Minutes
+name: keep-alive auth
 
 on:
   schedule:
-    # Runs every 60 minutes (UTC time)
-    - cron: "0 */1 * * *"  # This runs at the top of every hour (adjust later for 90 mins)
-  workflow_dispatch:  # This allows you to manually trigger the action if needed
+    - cron: "0 */1 * * *"
+  workflow_dispatch: 
 
 jobs:
   run-script:

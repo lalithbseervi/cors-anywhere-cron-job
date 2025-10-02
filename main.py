@@ -3,8 +3,8 @@ import json
 import os
 from urllib.parse import urlencode
 
-username = 'PES1UG21CA000'
-password = 'whatever'
+username = os.getenv('USERNAME', 'PES1UG22CA000')  
+password = os.getenv('PASSWORD', 'thisisapassword')  
 
 base_url = 'https://cors-proxy.devpages.workers.dev/'
 target_url = 'https://pesu-auth-z18n.onrender.com/authenticate'
