@@ -1,0 +1,1 @@
+[![keep-alive auth](https://github.com/lalithbseervi/cors-anywhere-cron-job/actions/workflows/run.yml/badge.svg)](https://github.com/lalithbseervi/cors-anywhere-cron-job/actions/workflows/run.yml)
